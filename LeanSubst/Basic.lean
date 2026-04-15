@@ -1,4 +1,3 @@
-
 namespace LeanSubst
   universe u
   variable {T : Type}
