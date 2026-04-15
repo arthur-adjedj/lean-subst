@@ -1,5 +1,4 @@
 import LeanSubst
-import Lilac
 
 namespace LeanSubst.Examples.ArityGeneric
 

@@ -1,4 +1,4 @@
-import Lilac
+import LeanSubst.Fun
 
 namespace LeanSubst
   universe u
