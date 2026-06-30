@@ -7,7 +7,6 @@ variable {T : Type}
 def mk0 : Fin 0 -> T
 | x => nomatch x
 
-@[simp]
 theorem mk0_eta {t : Fin 0 -> T} : t = mk0 := by
   funext; case _ x =>
   cases x; case _ x p =>
