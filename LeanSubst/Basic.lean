@@ -177,7 +177,7 @@ namespace LeanSubst
   instance : HAndThen Ren (Sequ Nat) Ren where
     hAndThen f g := (g ()) ∘ f
 
-  @[simp]
+  -- @[simp]
   theorem Ren.id_promote : (λ x => x) = id := by unfold Ren.id; simp
 
   @[simp]

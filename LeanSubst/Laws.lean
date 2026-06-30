@@ -119,12 +119,16 @@ namespace LeanSubst
           funext; case _ i => simp [Ren.to, Subst.succ]
 
     @[simp, grind =]
-    theorem rewrite_lift_zero [RenMap S] [RenMapId S] {σ : Subst S}
+    theorem rewrite_lift_zero [RenMap S] [h : RenMapId S] {σ : Subst S}
       : σ.lift 0 = σ
     := by
       unfold Subst.lift; funext; case _ i =>
       simp; generalize zdef : σ i = z
-      cases z <;> simp
+      cases z
+      · simp
+      · dsimp
+        congr
+        exact Ren.apply_id
 
     @[grind =]
     theorem rewrite_lift_succ
@@ -271,7 +275,7 @@ namespace LeanSubst
       : (σ ∘ r.to) ◾ (+1@T) = (σ ◾ +1@T) ∘ r.to
     := by
       have lem := hcomp_distr_ren_right (T := T) r σ +1
-      simp at lem; exact lem
+      exact lem
 
     @[simp, grind =]
     theorem apply_hcompose
