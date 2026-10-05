@@ -1,6 +1,6 @@
-name = "lean-subst"
+name = "LeanSubst"
 version = "0.1.0"
-defaultTargets = ["lean-subst"]
+defaultTargets = ["LeanSubst"]
 
 leanOptions = { autoImplicit = false }
 
@@ -10,6 +10,3 @@ name = "LeanSubst"
 [[lean_lib]]
 name = "Examples"
 
-[[lean_exe]]
-name = "lean-subst"
-root = "Main"

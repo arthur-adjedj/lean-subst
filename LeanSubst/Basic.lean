@@ -23,6 +23,7 @@ namespace LeanSubst
 
   abbrev Subst (T : Type) := Nat -> Subst.Action T
 
+  @[implicit_reducible]
   def SplitSubst (T : Type) : Subst.Kind -> Type
   | .re => Ren
   | .su => Subst T
@@ -232,16 +233,6 @@ namespace LeanSubst
     end
   end Subst
 
-  macro "solve_stable" r:term "," σ:term : tactic => `(tactic| {
-    intro h; simp [Ren.apply, Subst.apply]
-    funext; case _ t =>
-    induction t generalizing $r $σ <;> simp [Ren.to] at *
-    all_goals simp [SubstMap.smap, *] at *; try simp [*]
-    any_goals solve | (
-      rw [<-Ren.lift_eq_from_eq h]
-      simp [Ren.to])
-    any_goals solve | (rw [<-h]; simp)
-  })
 
   macro "solve_compose" Ty:term "," s:Lean.Parser.Tactic.elimTarget "," σ:term "," τ:term : tactic => `(tactic| {
     have lem1 (τ : Subst $Ty) : (Ren.to (· + 1)) ∘ τ.lift = τ ∘ (Ren.to (· + 1)) := by
